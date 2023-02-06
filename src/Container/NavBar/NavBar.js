@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import './navBar.css'
 import { BiMenuAltRight } from 'react-icons/bi'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
@@ -23,19 +24,19 @@ const NavBar = () => {
     <nav>
         <div>
             <h2>
-                <span>E</span>-commerce
+                <Link to='/'><span>E</span>-commerce</Link>
             </h2>
         </div>
         <div className='navigation'>
             <ul className={`${showNavigation && 'showNav'}`}>
                 <li>
-                    <a href=''>Link</a>
+                    <Link to='/'>Home</Link>
                 </li>
                 <li>
-                    <a href=''>Link</a>
+                    <Link to='smartphone'>Smart Phones</Link>
                 </li>
                 <li>
-                    <a href=''>Link</a>
+                    <Link to='laptop'>Laptops</Link>
                 </li>
             </ul>
         </div>
