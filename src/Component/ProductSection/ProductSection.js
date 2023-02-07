@@ -6,6 +6,10 @@ import './productSection.css'
 const ProductSection = () => {
       const { loading, products } = useFetch('https://dummyjson.com/products')
 
+      const getProduct = () =>{
+
+      }
+
   return (
     <div className='product-container'>
       {
@@ -19,7 +23,6 @@ const ProductSection = () => {
               {
                   products.map((product)=>{
                     const {id, title, description, category, price, thumbnail, images, rating, stock} = product
-                    console.log(product)
                     return (
                           <div key={id} className='product'>
                               <Link to={`/detailpage/${id}`}><img src={thumbnail} /></Link>
@@ -30,7 +33,7 @@ const ProductSection = () => {
                                      <p>Rating: {rating}/5</p>
                                 </div>
                               </div>
-                              <button className='add-cart'>ADD TO CART</button>
+                              <button className='add-cart' onClick={getProduct}>ADD TO CART</button>
                               <span className='product-stock'>Stock: {stock}</span>
                           </div>
                     )     
@@ -44,3 +47,4 @@ const ProductSection = () => {
 }
 
 export default ProductSection
+
