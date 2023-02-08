@@ -3,12 +3,9 @@ import { Link } from 'react-router-dom'
 import useFetch from '../UseFetch/useFetch'
 import './productSection.css'
 
-const ProductSection = () => {
+const ProductSection = ({getProduct}) => {
       const { loading, products } = useFetch('https://dummyjson.com/products')
 
-      const getProduct = () =>{
-
-      }
 
   return (
     <div className='product-container'>
@@ -33,7 +30,7 @@ const ProductSection = () => {
                                      <p>Rating: {rating}/5</p>
                                 </div>
                               </div>
-                              <button className='add-cart' onClick={getProduct}>ADD TO CART</button>
+                              <button className='add-cart' onClick={()=> getProduct({id, price, thumbnail, title})}>ADD TO CART</button>
                               <span className='product-stock'>Stock: {stock}</span>
                           </div>
                     )     

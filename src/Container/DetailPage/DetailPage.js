@@ -72,10 +72,10 @@ const DetailPage = () => {
            <h1 className='product-headline'>Product Detail</h1>
        </div>
       <div className='product-box'>
-         <div>
+         <div className='product-image-box'>
             {
               products && item && (
-                <div style={{height: '320px'}}>
+                <div className='product-main-img'>
                    <img className='main-image' src={mainImg} />
                 </div>
               )
@@ -89,29 +89,31 @@ const DetailPage = () => {
             </div>
 
          </div>
-         <div>
+         <div className='product-description-box'>
           {
             products && item && item.price && !isNaN(item.price) && (
               <div>
                 <h1>{item.title}</h1>
-                <div>
+                <h3>{item.brand}</h3>
+                <div className='product-price'>
+                  <span>${parseInt(item.price + item.price / 100 * 25)}</span>
+                  <span>${item.price}</span>
+                </div>
+                <p className='dis-percentage'>Discount Percentage: {item.discountPercentage}</p>
+                <div className='product-rating-stock'>
                    <span>Rating: {item.rating}</span>
-                   <span>Available Stock: {item.stock}</span>
+                   <span>Stock: {item.stock}</span>
                 </div>
-                <div>
-                  <span>{parseInt(item.price + item.price / 100 * 25)}</span><br></br>
-                  <span>{item.price}</span>
-                </div>
-                <p>{item.description}</p>
+                <p style={{width: '300px', textAlign: 'center', margin: '10px auto'}}>{item.description}</p>
               </div>
             )
           }
-                   <button>Add to cart</button>
+           <button className='button'>Add to cart</button>
          </div>
       </div>
 
          <div className='add-review'>
-            <h3>Add your review</h3>
+            <h2 style={{margin: '20px auto'}}>Add your review</h2>
             <div className='rating-box'>
                {stars.map((_, index)=>{
                  return (
@@ -130,6 +132,8 @@ const DetailPage = () => {
                  )
                })}             
             </div>
+            <textarea className='review-box'></textarea>
+            <button className='button'>Submit</button>
          </div>
 
       <div>

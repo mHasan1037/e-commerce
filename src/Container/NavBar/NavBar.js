@@ -3,6 +3,8 @@ import './navBar.css'
 import { BiMenuAltRight } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
+let logo = ['https://www.seekpng.com/png/full/428-4289671_logo-e-commerce-good-e-commerce-logo.png']
+
 const NavBar = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [showNavigation, setShowNavigation] = useState(false)
@@ -20,23 +22,25 @@ const NavBar = () => {
         setShowNavigation(!showNavigation)
     }
 
+    const handleShowNav = () =>{
+        setShowNavigation(false)
+    }
+
   return (
     <nav>
         <div>
-            <h2>
-                <Link to='/'><span>E</span>-commerce</Link>
-            </h2>
+             <Link to='/'><img style={{width: '120px'}} src={logo[0]} /></Link>
         </div>
         <div className='navigation'>
             <ul className={`${showNavigation && 'showNav'}`}>
                 <li>
-                    <Link to='/'>Home</Link>
+                    <Link to='/' onClick={handleShowNav}>Home</Link>
                 </li>
                 <li>
-                    <Link to='smartphone'>Smart Phones</Link>
+                    <Link to='smartphone' onClick={handleShowNav}>Smart Phones</Link>
                 </li>
                 <li>
-                    <Link to='laptop'>Laptops</Link>
+                    <Link to='laptop' onClick={handleShowNav}>Laptops</Link>
                 </li>
             </ul>
         </div>
