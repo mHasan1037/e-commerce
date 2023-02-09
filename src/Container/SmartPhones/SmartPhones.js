@@ -1,15 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useFetch from '../../Component/UseFetch/useFetch'
+import useFetch from '../../Hooks/UseFetch/useFetch'
 import '../../Component/ProductSection/productSection.css'
+import useCart from '../../Hooks/AddCart/useCart'
 
 const SmartPhones = () => {
       const { loading, products } = useFetch('https://dummyjson.com/products')
-
-      const getProduct = () =>{
-
-      }
-
+      const [handleProduct] = useCart('addProduct')
 
   return (
     <div className='product-container'>
@@ -35,7 +32,7 @@ const SmartPhones = () => {
                                    <p>Rating: {rating}/5</p>
                               </div>
                             </div>
-                            <button className='add-cart' onClick={getProduct}>ADD TO CART</button>
+                            <button className='add-cart' onClick={()=> handleProduct(id)}>ADD TO CART</button>
                             <span className='product-stock'>Stock: {stock}</span>
                         </div>
                     )

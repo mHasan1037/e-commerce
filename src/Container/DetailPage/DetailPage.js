@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { FaStar } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
-import useFetch from '../../Component/UseFetch/useFetch'
+import useFetch from '../../Hooks/UseFetch/useFetch'
 import { Link } from 'react-router-dom'
 import './detailPage.css'
+import useCart from '../../Hooks/AddCart/useCart'
 
 const DetailPage = () => {
   const [item, setItem] = useState([])
@@ -11,6 +12,7 @@ const DetailPage = () => {
   const [sameProduct, setSameProduct] = useState([])
   const { loading, products } = useFetch('https://dummyjson.com/products')
   const { id } = useParams()
+  const [handleProduct] = useCart('addProduct')
 
 
   useEffect(()=>{
@@ -108,9 +110,9 @@ const DetailPage = () => {
               </div>
             )
           }
-           <button className='button'>Add to cart</button>
+           <button className='button' onClick={()=> handleProduct(item.id)}>Add to cart</button>
          </div>
-      </div>
+
 
          <div className='add-review'>
             <h2 style={{margin: '20px auto'}}>Add your review</h2>
@@ -135,6 +137,8 @@ const DetailPage = () => {
             <textarea className='review-box'></textarea>
             <button className='button'>Submit</button>
          </div>
+      </div>
+
 
       <div>
         <h1 className='product-headline'>Similar Products</h1>
@@ -152,7 +156,7 @@ const DetailPage = () => {
                                       <p>Rating: {rating}/5</p>
                                   </div>
                                 </div>
-                                <button className='add-cart'>ADD TO CART</button>
+                                <button className='add-cart' onClick={()=> handleProduct(id)}>ADD TO CART</button>
                                 <span className='product-stock'>Stock: {stock}</span>
                             </div>
                       )     

@@ -8,7 +8,8 @@ const Footer = () => {
       color: 'white',
       textAlign: 'center',
       padding: '10px',
-      flexShrink: 0
+      flexShrink: 0,
+      marginTop: '50px'
     }}>
     Mahmudul Hasan  @{new Date().getFullYear()} 
     </div>
