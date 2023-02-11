@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import useFetch from '../../Hooks/UseFetch/useFetch'
 import '../../Component/ProductSection/productSection.css'
 import useCart from '../../Hooks/AddCart/useCart'
+import Loading from '../../Component/Loading/Loading'
 
 const SmartPhones = () => {
       const { loading, products } = useFetch('https://dummyjson.com/products')
@@ -13,7 +14,7 @@ const SmartPhones = () => {
       {
        loading 
        ? 
-       <h1>Loading...</h1>
+       <Loading />
        :
         <>
           <h1 className='product-headline'>Smart Phones</h1>

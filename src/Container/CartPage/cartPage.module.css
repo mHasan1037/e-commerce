@@ -1,0 +1,110 @@
+.bigText{
+    min-height: 70vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.cartContainer{
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.cartBox{
+   flex: 1.5;   
+   padding: 20px; 
+   min-width: 350px;
+}
+
+.cartHeading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+hr{
+    margin: 10px 0;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+.productBox{
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.img{
+    width: 150px;
+    max-height: 200px;
+}
+
+.productDetails{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.productDetails a{
+    color: green;
+    text-decoration: none;
+}
+
+.closeBtn{
+   color: red;
+   font-size: 20px;
+   cursor: pointer;
+}
+
+.subTotalOne{
+    display: flex;
+    gap: 30px;
+    justify-content: flex-end;
+}
+
+
+.cartCheckout{
+    flex: 1;
+    padding: 20px; 
+}
+
+.subTotalTwo{
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+
+.price{
+    font-weight: normal;
+    color: rgb(41, 41, 41);
+}
+
+.checkout{
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px;
+    cursor: pointer;
+    border: none;
+    background-color: rgb(5, 139, 28);
+    color: white;
+}
+
+.checkout:hover{
+    background-color: rgb(6, 179, 34);
+}
+
+.paymentOptions{
+   margin-top: 20px;
+}
+
+.paymentCard{
+    margin-top: 5px;
+    display: flex;
+    gap: 10px;
+    font-size: 25px;
+}

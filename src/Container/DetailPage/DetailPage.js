@@ -5,6 +5,7 @@ import useFetch from '../../Hooks/UseFetch/useFetch'
 import { Link } from 'react-router-dom'
 import './detailPage.css'
 import useCart from '../../Hooks/AddCart/useCart'
+import Loading from '../../Component/Loading/Loading'
 
 const DetailPage = () => {
   const [item, setItem] = useState([])
@@ -61,14 +62,8 @@ const DetailPage = () => {
   }
 
   return (
-    loading ? <div style={{
-      width: '100vw',
-      height: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '10vw'
-    }}>Loading...</div> :
+    loading ? 
+    <Loading /> :
     <div>
        <div>
            <h1 className='product-headline'>Product Detail</h1>

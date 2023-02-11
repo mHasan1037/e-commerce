@@ -3,7 +3,6 @@ import './navBar.css'
 import { BiMenuAltRight } from 'react-icons/bi'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import useCart from '../../Hooks/AddCart/useCart'
 
 let logo = ['https://www.seekpng.com/png/full/428-4289671_logo-e-commerce-good-e-commerce-logo.png']
 
@@ -12,23 +11,15 @@ const NavBar = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [showNavigation, setShowNavigation] = useState(false)
     const [cartCount, setCartCount] = useState(0);
-    const [handleProduct] = useCart('addProduct', setCartCount)
 
     useEffect(()=>{
-        const updateCartCount = () =>{
-            const storedProduct = localStorage.getItem('addProduct');
-            if (storedProduct) {
-              setCartCount(JSON.parse(storedProduct).length);
-            } else {
-              setCartCount(0);
-            }
-        }
-        updateCartCount()
-        window.addEventListener('storage', updateCartCount)
-        return () =>{
-            window.removeEventListener('storage', updateCartCount)
-        }       
-   }, [])
+        if(localStorage.getItem('addProduct')){
+            setCartCount(JSON.parse(localStorage.getItem('addProduct')).length)
+        }else{
+            setCartCount(0)
+        }  
+    }, [])
+ 
 
     useEffect(()=>{
        const handleWindowResize = () =>{
@@ -65,7 +56,7 @@ const NavBar = () => {
                     <Link to='laptop' onClick={handleShowNav}>Laptops</Link>
                 </li>
                 <li>
-                    <Link to='laptop' onClick={handleShowNav}>
+                    <Link to='cart' onClick={handleShowNav}>
                         <div className='cart-box'>
                             <AiOutlineShoppingCart />
                             <span>{cartCount}</span>
