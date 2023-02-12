@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import './navBar.css'
 import { BiMenuAltRight } from 'react-icons/bi'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+import CartContext from '../../Hooks/CartContext/CartContext'
+
 
 let logo = ['https://www.seekpng.com/png/full/428-4289671_logo-e-commerce-good-e-commerce-logo.png']
 
@@ -11,6 +13,7 @@ const NavBar = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [showNavigation, setShowNavigation] = useState(false)
     const [cartCount, setCartCount] = useState(0);
+    const { updateCart, setUpdateCart} = useContext(CartContext)
 
     useEffect(()=>{
         if(localStorage.getItem('addProduct')){
@@ -19,6 +22,30 @@ const NavBar = () => {
             setCartCount(0)
         }  
     }, [])
+
+    const [processed, setProcessed] = useState(false)
+
+    useEffect(()=>{
+        let prevValue = 0;
+        if(localStorage.getItem('addProduct')){
+            prevValue = JSON.parse(localStorage.getItem('addProduct')).length
+        }
+
+        if(!processed){
+            setProcessed(true)
+            if(updateCart){
+                setCartCount(0)
+            }else{
+                setCartCount(prevValue)
+            }
+        }else{
+            if(updateCart){
+                setCartCount(prevValue + 0)
+            }else if(cartCount.length > 1){
+                setCartCount(prevValue + 1)
+            }
+        }
+    }, [updateCart, processed])
  
 
     useEffect(()=>{

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaStar } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 import useFetch from '../../Hooks/UseFetch/useFetch'
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import './detailPage.css'
 import useCart from '../../Hooks/AddCart/useCart'
 import Loading from '../../Component/Loading/Loading'
+import CartContext from '../../Hooks/CartContext/CartContext'
 
 const DetailPage = () => {
   const [item, setItem] = useState([])
@@ -14,6 +15,7 @@ const DetailPage = () => {
   const { loading, products } = useFetch('https://dummyjson.com/products')
   const { id } = useParams()
   const [handleProduct] = useCart('addProduct')
+  const { updateCart, setUpdateCart, setCartNotification} = useContext(CartContext)
 
 
   useEffect(()=>{
@@ -105,7 +107,15 @@ const DetailPage = () => {
               </div>
             )
           }
-           <button className='button' onClick={()=> handleProduct(item.id)}>Add to cart</button>
+           <button 
+                className='add-cart' 
+                onClick={()=> {
+                handleProduct(id); 
+                setUpdateCart(prev => isNaN(parseInt(prev)) ? 1 : parseInt(prev) + 1);
+                setCartNotification(true)
+                }}>
+                ADD TO CART
+            </button>
          </div>
 
 
@@ -151,7 +161,15 @@ const DetailPage = () => {
                                       <p>Rating: {rating}/5</p>
                                   </div>
                                 </div>
-                                <button className='add-cart' onClick={()=> handleProduct(id)}>ADD TO CART</button>
+                                <button 
+                                   className='add-cart' 
+                                   onClick={()=> {
+                                     handleProduct(id); 
+                                     setUpdateCart(prev => isNaN(parseInt(prev)) ? 1 : parseInt(prev) + 1);
+                                     setCartNotification(true)
+                                     }}>
+                                      ADD TO CART
+                                </button>
                                 <span className='product-stock'>Stock: {stock}</span>
                             </div>
                       )     

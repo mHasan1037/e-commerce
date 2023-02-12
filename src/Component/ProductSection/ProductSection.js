@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
+import CartContext from '../../Hooks/CartContext/CartContext'
 import { Link } from 'react-router-dom'
 import useFetch from '../../Hooks/UseFetch/useFetch'
 import './productSection.css'
@@ -8,6 +9,8 @@ import Loading from '../Loading/Loading'
 const ProductSection = () => {
       const { loading, products } = useFetch('https://dummyjson.com/products')
       const [handleProduct] = useCart('addProduct')
+      const { updateCart, setUpdateCart, setCartNotification} = useContext(CartContext)
+
 
   return (
     <div className='product-container'>
@@ -32,7 +35,15 @@ const ProductSection = () => {
                                      <p>Rating: {rating}/5</p>
                                 </div>
                               </div>
-                              <button className='add-cart' onClick={()=> handleProduct(id)}>ADD TO CART</button>
+                              <button 
+                                  className='add-cart' 
+                                  onClick={()=> {
+                                     handleProduct(id); 
+                                     setUpdateCart(prev => isNaN(parseInt(prev)) ? 1 : parseInt(prev) + 1)
+                                     setCartNotification(true)
+                                     }}>
+                                    ADD TO CART
+                                    </button>
                               <span className='product-stock'>Stock: {stock}</span>
                           </div>
                     )     

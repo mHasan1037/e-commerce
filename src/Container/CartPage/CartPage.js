@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import useFetch from '../../Hooks/UseFetch/useFetch'
 import styles from './cartPage.module.css'
@@ -10,6 +10,7 @@ const CartPage = () => {
     const {loading, products} = useFetch('https://dummyjson.com/products')
     const [storedIds, setStoredIds] = useState(JSON.parse(localStorage.getItem('addProduct')) || [])
     const [totalBuy, setTotalBuy] = useState(0)
+
 
     useEffect(() => {
         const storedIds = JSON.parse(localStorage.getItem('addProduct')) || []
