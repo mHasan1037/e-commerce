@@ -40,7 +40,7 @@ function App() {
 
   return (
     <CartContext.Provider value={{updateCart, setUpdateCart, cartNotification, setCartNotification}}>
-      <BrowserRouter>
+      <BrowserRouter basename='/e-commerce'>
           {cartNotification && <div style={notificationStyle}>One product is added to your cart</div>}
           <NavBar />
           <div style={{ display: 'flex', flexDirection: 'column', minHeight: '82vh' }}>

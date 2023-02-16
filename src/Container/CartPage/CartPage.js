@@ -43,7 +43,7 @@ const CartPage = () => {
        const updatedIds = storedIds.filter(storedId => storedId !== id)
        setStoredIds(updatedIds)
        localStorage.setItem('addProduct', JSON.stringify(updatedIds))
-       setUpdateCart(prev => parseInt(prev) - 1);
+       setUpdateCart(prev => isNaN(parseInt(prev)) ? 0 : parseInt(prev) + 1);
     }
 
 
