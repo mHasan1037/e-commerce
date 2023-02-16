@@ -34,10 +34,9 @@ function App() {
           setCartNotification(false)
         }, 2000)
       }
-      return ()=>{
-        clearTimeout(timerId)
-      }
+
   }, [cartNotification])
+
 
   return (
     <CartContext.Provider value={{updateCart, setUpdateCart, cartNotification, setCartNotification}}>

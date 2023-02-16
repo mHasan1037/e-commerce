@@ -11,7 +11,7 @@ const CartPage = () => {
     const {loading, products} = useFetch('https://dummyjson.com/products')
     const [storedIds, setStoredIds] = useState(JSON.parse(localStorage.getItem('addProduct')) || [])
     const [totalBuy, setTotalBuy] = useState(0)
-    const { updateCart, setUpdateCart, setCartNotification} = useContext(CartContext)
+    const { updateCart, setUpdateCart} = useContext(CartContext)
 
     useEffect(() => {
         const storedIds = JSON.parse(localStorage.getItem('addProduct')) || []
@@ -43,8 +43,7 @@ const CartPage = () => {
        const updatedIds = storedIds.filter(storedId => storedId !== id)
        setStoredIds(updatedIds)
        localStorage.setItem('addProduct', JSON.stringify(updatedIds))
-       setCartNotification(true)
-       setUpdateCart(prev => isNaN(parseInt(prev)) ? 1 : parseInt(prev) - 1);
+       setUpdateCart(prev => parseInt(prev) - 1);
     }
 
 
