@@ -5,12 +5,13 @@ import styles from './cartPage.module.css'
 import {RxCross2} from 'react-icons/rx'
 import { FaCcVisa, FaCcMastercard, FaCcPaypal, FaCreditCard } from 'react-icons/fa'
 import Loading from '../../Component/Loading/Loading'
+import CartContext from '../../Hooks/CartContext/CartContext'
 
 const CartPage = () => {
     const {loading, products} = useFetch('https://dummyjson.com/products')
     const [storedIds, setStoredIds] = useState(JSON.parse(localStorage.getItem('addProduct')) || [])
     const [totalBuy, setTotalBuy] = useState(0)
-
+    const { updateCart, setUpdateCart, setCartNotification} = useContext(CartContext)
 
     useEffect(() => {
         const storedIds = JSON.parse(localStorage.getItem('addProduct')) || []
@@ -36,6 +37,16 @@ const CartPage = () => {
     const delivery = filteredProducts.length * 20
 
     const total = totalPrice + delivery
+
+
+    const handleDelete = (id) =>{
+       const updatedIds = storedIds.filter(storedId => storedId !== id)
+       setStoredIds(updatedIds)
+       localStorage.setItem('addProduct', JSON.stringify(updatedIds))
+       setCartNotification(true)
+       setUpdateCart(prev => isNaN(parseInt(prev)) ? 1 : parseInt(prev) - 1);
+    }
+
 
   return (
     <>
@@ -69,7 +80,7 @@ const CartPage = () => {
                                       <h3 className={styles.price}>${price}</h3>
                                       <Link to={`/detailpage/${id}`} ><h3>{title}</h3></Link>
                                    </div>
-                                   <RxCross2 className={styles.closeBtn} />
+                                   <RxCross2 className={styles.closeBtn} onClick={()=> handleDelete(id)} />
                                 </div>
                             </div>
                         )
