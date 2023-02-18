@@ -23,6 +23,8 @@ const CartPage = () => {
         return acc
     }, {})
 
+    
+
     const filteredProducts = products.filter(product => productCount[product.id])
 
     useEffect(()=>{

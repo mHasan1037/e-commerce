@@ -43,7 +43,7 @@ const ProductSection = () => {
                                      setCartNotification(true)
                                      }}>
                                     ADD TO CART
-                                    </button>
+                              </button>
                               <span className='product-stock'>Stock: {stock}</span>
                           </div>
                     )     

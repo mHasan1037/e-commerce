@@ -110,7 +110,7 @@ const DetailPage = () => {
            <button 
                 className='add-cart' 
                 onClick={()=> {
-                handleProduct(id); 
+                handleProduct(parseInt(id)); 
                 setUpdateCart(prev => isNaN(parseInt(prev)) ? 1 : parseInt(prev) + 1);
                 setCartNotification(true)
                 }}>
@@ -118,7 +118,10 @@ const DetailPage = () => {
             </button>
          </div>
 
-
+        {/*
+          Review section is here......
+          Review section is here......
+        */}
          <div className='add-review'>
             <h2 style={{margin: '20px auto'}}>Add your review</h2>
             <div className='rating-box'>
@@ -144,7 +147,10 @@ const DetailPage = () => {
          </div>
       </div>
 
-
+      {/*
+          Similar product section....
+          Similar product section....
+      */}
       <div>
         <h1 className='product-headline'>Similar Products</h1>
             <div className='products'>
